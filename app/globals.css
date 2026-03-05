@@ -1,0 +1,157 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* AAO — The Sovereign Network Theme */
+:root {
+  --background: #0A0A0B;
+  --foreground: #F5F5F5;
+  --card: #141416;
+  --card-foreground: #F5F5F5;
+  --popover: #0A0A0B;
+  --popover-foreground: #F5F5F5;
+  --primary: #D4AF37;
+  --primary-foreground: #0A0A0B;
+  --secondary: #1A1A1E;
+  --secondary-foreground: #A8A8B0;
+  --muted: #1A1A1E;
+  --muted-foreground: #71717A;
+  --accent: #D4AF37;
+  --accent-foreground: #0A0A0B;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #27272A;
+  --input: #1A1A1E;
+  --ring: #D4AF37;
+  --radius: 0.5rem;
+  --sidebar: #0A0A0B;
+  --sidebar-foreground: #F5F5F5;
+  --sidebar-primary: #D4AF37;
+  --sidebar-primary-foreground: #0A0A0B;
+  --sidebar-accent: #1A1A1E;
+  --sidebar-accent-foreground: #F5F5F5;
+  --sidebar-border: #27272A;
+  --sidebar-ring: #D4AF37;
+  --sovereign-gold: #D4AF37;
+  --obsidian: #0A0A0B;
+  --obsidian-light: #141416;
+}
+
+@theme inline {
+  --font-sans: "Inter", "Inter Fallback", sans-serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", monospace;
+  --font-display: "Space Grotesk", "Space Grotesk Fallback", sans-serif;
+  --color-sovereign-gold: var(--sovereign-gold);
+  --color-obsidian: var(--obsidian);
+  --color-obsidian-light: var(--obsidian-light);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
+    /* Apply scrollbar styles to html element */
+    scrollbar-width: thin;
+    scrollbar-color: #27272A #0A0A0B;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    max-width: 100vw;
+    scrollbar-width: thin;
+    scrollbar-color: #27272A #0A0A0B;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    width: 10px;
+  }
+  html::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track {
+    background: #0A0A0B;
+  }
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    background: #27272A;
+    border-radius: 0px;
+  }
+  html::-webkit-scrollbar-thumb:hover,
+  body::-webkit-scrollbar-thumb:hover {
+    background: #3F3F46;
+  }
+}
+
+/* Custom noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image: linear-gradient(to right, #21262D 1px, transparent 1px),
+    linear-gradient(to bottom, #21262D 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Custom selection color */
+::selection {
+  background: #00FFC2;
+  color: #0D1117;
+}
+
+/* Glow utilities */
+.glow-mint {
+  box-shadow: 0 0 20px rgba(0, 255, 194, 0.15), 0 0 60px rgba(0, 255, 194, 0.05);
+}
+.glow-mint-strong {
+  box-shadow: 0 0 30px rgba(0, 255, 194, 0.25), 0 0 80px rgba(0, 255, 194, 0.1);
+}
+.text-glow-mint {
+  text-shadow: 0 0 20px rgba(0, 255, 194, 0.4), 0 0 40px rgba(0, 255, 194, 0.2);
+}
+.border-glow-mint {
+  border-color: rgba(0, 255, 194, 0.3);
+  box-shadow: inset 0 0 20px rgba(0, 255, 194, 0.03), 0 0 15px rgba(0, 255, 194, 0.06);
+}
